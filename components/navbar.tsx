@@ -1,9 +1,19 @@
 "use client";
+import { useAppContext } from "@/context/AuthProvider";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { token, profile } = useAppContext()
+	const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+	useEffect(() => {
+		if (token) {
+			setIsLoggedIn(true)
+		}
+	}, [token])
+
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -16,6 +26,31 @@ export default function Navbar() {
     { name: "Save", href: "/" },
     { name: "Review", href: "/spreads" },
   ];
+
+  const getLoggedOutButton = () => {
+    return (
+      <Link 
+        href="/login"
+        className="bg-zinc-400 hover:bg-zinc-500 text-slate px-8 py-2 rounded-md"
+      >
+        Login
+      </Link>
+    )
+  }
+
+  const getLoggedInButton = () => {
+    return (  
+      <button 
+        className="bg-zinc-400 hover:bg-zinc-500 text-slate px-8 py-2 rounded-md"
+        onClick={() => {
+							localStorage.removeItem("token")
+							setIsLoggedIn(false)
+						}}
+      >
+        Logout
+      </button>
+    )
+  }
 
   return (
     <div>
@@ -96,9 +131,7 @@ export default function Navbar() {
                 </li>
               ))}
               <li className="mt-4">
-                <button className="bg-zinc-400 text-slate px-8 py-2 rounded-md hover:bg-zinc-500">
-                  Login
-                </button>
+                {isLoggedIn ? getLoggedInButton() : getLoggedOutButton()}
               </li>
             </ul>
           </div>
@@ -117,9 +150,7 @@ export default function Navbar() {
                 </li>
               ))}
               <li>
-                <button className="bg-zinc-400 hover:bg-zinc-500 text-slate px-8 py-2 rounded-md">
-                  Login
-                </button>
+                {isLoggedIn ? getLoggedInButton() : getLoggedOutButton()}
               </li>
             </ul>
           </div>

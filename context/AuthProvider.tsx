@@ -2,14 +2,14 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { getUserProfile } from '../data/auth';
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 
 const AppContext = createContext();
 
 export function AuthProvider({ children }) {
   const [profile, setProfile] = useState({})
   const [token, setToken] = useState("")
-  const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
     setToken(localStorage.getItem('token'))
@@ -19,7 +19,7 @@ export function AuthProvider({ children }) {
     const authRoutes = ['/login', '/register']
     if (token) {
       localStorage.setItem('token', token)
-      if (!authRoutes.includes(router.pathname)) {
+      if (!authRoutes.includes(pathname)) {
         getUserProfile().then((profileData: object) => {
           if (profileData) {
             setProfile(profileData)
@@ -27,7 +27,7 @@ export function AuthProvider({ children }) {
         })
       }
     }
-  }, [token, router.pathname])
+  }, [token, pathname])
 
   return (
     <AppContext.Provider value={{ profile, token, setToken, setProfile }}>

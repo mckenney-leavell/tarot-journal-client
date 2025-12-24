@@ -1,13 +1,16 @@
 'use client'
 
-import { getSpreadById } from "@/data/spreads"
+import { deleteSpread, getSpreadById } from "@/data/spreads"
+import { refresh } from "next/cache"
 import { useParams } from "next/navigation"
 import { use, useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
 export default function SpreadDetails({ params }: { params: { id: string }}) {
     const { id } = use(params)
     const [spread, setSpread] = useState({})
     const [cards, getCards] = useState([])
+    const router = useRouter()
 
     useEffect(() => {
         getSpreadById(id).then((data: object) => {
@@ -22,6 +25,10 @@ export default function SpreadDetails({ params }: { params: { id: string }}) {
             getCards(spread.spread_cards)
         }
     }, [spread])
+
+    const deleteCurrentSpread = id => {
+        deleteSpread(id).then(router.push('/spreads'))
+    }
 
     return (
         <>
@@ -45,7 +52,7 @@ export default function SpreadDetails({ params }: { params: { id: string }}) {
                     </div>
                     <div className="flex justify-center">
                         <button className="bg-zinc-400 hover:bg-zinc-500 text-slate px-8 py-2 rounded-md m-4">Edit</button>
-                        <button className="bg-zinc-900 border-1 border-zinc-400 hover:border-zinc-500 hover:bg-zinc-500 text-slate px-8 py-2 rounded-md m-4">Delete</button>
+                        <button onClick={() => deleteCurrentSpread(spread.id)} className="bg-zinc-900 border-1 border-zinc-400 hover:border-zinc-500 hover:bg-zinc-500 text-slate px-8 py-2 rounded-md m-4">Delete</button>
                     </div>
                 </main>
             </div>

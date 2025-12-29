@@ -51,7 +51,7 @@ export default function SpreadDetails({ params }: { params: { id: string }}) {
                         </div>
                     </div>
                     <div className="flex justify-center">
-                        <button className="bg-zinc-400 hover:bg-zinc-500 text-slate px-8 py-2 rounded-md m-4">Edit</button>
+                        <button onClick={() => router.push(`/spreads/${id}/edit`)} className="bg-zinc-400 hover:bg-zinc-500 text-slate px-8 py-2 rounded-md m-4">Edit</button>
                         <button onClick={() => deleteCurrentSpread(spread.id)} className="bg-zinc-900 border-1 border-zinc-400 hover:border-zinc-500 hover:bg-zinc-500 text-slate px-8 py-2 rounded-md m-4">Delete</button>
                     </div>
                 </main>

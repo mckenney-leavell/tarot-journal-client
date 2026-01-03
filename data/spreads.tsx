@@ -27,3 +27,26 @@ export function deleteSpread(id) {
         }
     })
 }
+
+export async function createSpread(spread) {
+    const response = await fetchWithResponse('spreads', {
+        method: 'POST',
+        headers: {
+            Authorization: `Token ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(spread)
+    })
+    return response
+}
+
+export function updateSpread(spreadId, spread) {
+    return fetchWithResponse(`spreads/${spreadId}`, {
+        method: "PUT",
+        headers: {
+            Authorization: `Token ${token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(spread)
+    })
+}

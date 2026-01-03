@@ -1,12 +1,15 @@
 "use client";
 import { useAppContext } from "@/context/AuthProvider";
+import { createSpread } from "@/data/spreads";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { token, profile } = useAppContext()
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const router = useRouter()
 
 	useEffect(() => {
 		if (token) {
@@ -19,11 +22,20 @@ export default function Navbar() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  // Navigation items array
+  const handleSaveClick = () => {
+      createSpread({
+          title: "",
+          interpretation: ""
+      }).then(spread => {
+        console.log("New spread object:", spread)
+        router.push(`/spreads/new?id=${spread?.id}`)
+      })
+  }
+
   const navItems = [
     { name: "Home", href: "/" },
     { name: "Learn", href: "/" },
-    { name: "Save", href: "/" },
+    { name: "Save", onClick: handleSaveClick },
     { name: "Review", href: "/spreads" },
   ];
 
@@ -121,13 +133,20 @@ export default function Navbar() {
             </div>
             <ul className="flex flex-col h-full gap-4 p-4">
               {navItems.map((item, index) => (
+                
                 <li
                   key={index}
                   className="flex items-center p-1 text-lg gap-x-2 text-slate-600 hover:text-slate-200"
                 >
+                {item.onClick ? (
+                  <button onClick={item.onClick}>
+                    {item.name}
+                  </button>
+                ) : (
                   <Link onClick={() => {setIsMobileMenuOpen(false);}} href={item.href} className="flex items-center">
                     {item.name}
                   </Link>
+                  )}
                 </li>
               ))}
               <li className="mt-4">
@@ -144,9 +163,15 @@ export default function Navbar() {
                   key={index}
                   className="flex items-center p-1 text-lg gap-x-2 text-slate-600 hover:text-slate-200"
                 >
+                {item.onClick ? (
+                  <button onClick={item.onClick} className="flex items-center">
+                    {item.name}
+                  </button>
+                ) : (
                   <Link href={item.href} className="flex items-center">
                     {item.name}
                   </Link>
+              )}
                 </li>
               ))}
               <li>

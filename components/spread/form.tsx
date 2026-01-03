@@ -2,7 +2,7 @@ import { getCards } from "@/data/cards"
 import { useEffect, useState } from "react"
 
 
-export default function SpreadForm({ saveSpread, titleEl, interpretationEl }) {
+export default function SpreadForm({ saveSpread, titleEl, interpretationEl, handleCardSelection }) {
     const [cards, setCards] = useState([])
     const [count, setCount] = useState(1)
 
@@ -16,7 +16,6 @@ export default function SpreadForm({ saveSpread, titleEl, interpretationEl }) {
         e.preventDefault()
         setCount(count + 1)
     }
-    
 
     return (
         <form className="max-w-sm mx-auto space-y-4">
@@ -27,7 +26,12 @@ export default function SpreadForm({ saveSpread, titleEl, interpretationEl }) {
             {Array.from({ length: count }).map((each, index) => {
             return <div key={index}>
                         <label htmlFor="countries" className="block mb-2.5 text-sm font-medium text-heading">Select an option</label>
-                            <select id="countries" className="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body" required>
+                            <select 
+                                id="countries" 
+                                className="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body" 
+                                onChange={(e) => handleCardSelection(index, e.target.value)}
+                                required
+                            >
                                 <option selected>Choose a card</option>
                                 {cards.map(card => {
                                     return (<option key={card.id} value={card.id}>{card.name}</option>)

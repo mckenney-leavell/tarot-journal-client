@@ -34,7 +34,6 @@ export default function Navbar() {
 
   const navItems = [
     { name: "Home", href: "/" },
-    // { name: "Learn", href: "/" },
     { name: "New Spread", onClick: handleSaveClick },
     { name: "My Spreads", href: "/spreads" },
   ];

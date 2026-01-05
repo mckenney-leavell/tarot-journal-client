@@ -29,14 +29,14 @@ export default function Navbar() {
       }).then(spread => {
         console.log("New spread object:", spread)
         router.push(`/spreads/new?id=${spread?.id}`)
-      })
+      }).then(() => setIsMobileMenuOpen(false))
   }
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "Learn", href: "/" },
-    { name: "Save", onClick: handleSaveClick },
-    { name: "Review", href: "/spreads" },
+    // { name: "Learn", href: "/" },
+    { name: "New Spread", onClick: handleSaveClick },
+    { name: "My Spreads", href: "/spreads" },
   ];
 
   const getLoggedOutButton = () => {
@@ -72,7 +72,7 @@ export default function Navbar() {
             href="/"
             className="mr-4 block cursor-pointer py-1.5 text-zinc-300 font-bold text-2xl"
           >
-            MY TAROT JOURNAL
+            TAROT JOURNAL
           </Link>
 
           <div className="lg:hidden">

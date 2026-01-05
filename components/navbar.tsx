@@ -72,7 +72,7 @@ export default function Navbar() {
             href="/"
             className="mr-4 block cursor-pointer py-1.5 text-zinc-300 font-bold text-2xl"
           >
-            MY TAROT JOURNAL
+            TAROT JOURNAL
           </Link>
 
           <div className="lg:hidden">

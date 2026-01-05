@@ -29,14 +29,14 @@ export default function Navbar() {
       }).then(spread => {
         console.log("New spread object:", spread)
         router.push(`/spreads/new?id=${spread?.id}`)
-      })
+      }).then(() => setIsMobileMenuOpen(false))
   }
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "Learn", href: "/" },
-    { name: "Save", onClick: handleSaveClick },
-    { name: "Review", href: "/spreads" },
+    // { name: "Learn", href: "/" },
+    { name: "New Spread", onClick: handleSaveClick },
+    { name: "My Spreads", href: "/spreads" },
   ];
 
   const getLoggedOutButton = () => {

@@ -12,25 +12,27 @@ export function AuthProvider({ children }) {
   const pathname = usePathname()
 
   useEffect(() => {
-    setToken(localStorage.getItem('token'))
+    if (typeof window !== 'undefined') {
+      setToken(localStorage.getItem('token'))
+    }
   }, [])
 
   useEffect(() => {
     const authRoutes = ['/login', '/register']
-    if (token) {
+    if (token && typeof window !== 'undefined') {
       localStorage.setItem('token', token)
-      if (!authRoutes.includes(pathname)) {
-        getUserProfile().then((profileData: object) => {
-          if (profileData) {
-            setProfile(profileData)
-          }
-        })
-      }
+      // if (!authRoutes.includes(pathname)) {
+      //   getUserProfile().then((profileData: object) => {
+      //     if (profileData) {
+      //       setProfile(profileData)
+      //     }
+      //   })
+      // }
     }
   }, [token, pathname])
 
   return (
-    <AppContext.Provider value={{ profile, token, setToken, setProfile }}>
+    <AppContext.Provider value={{ profile, token, setToken }}>
       {children}
     </AppContext.Provider>
   );

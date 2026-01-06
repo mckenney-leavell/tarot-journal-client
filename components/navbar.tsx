@@ -7,9 +7,10 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { token, profile } = useAppContext()
+  const { token, setToken } = useAppContext()
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
   const router = useRouter()
+  // const width = window.innerWidth
 
 	useEffect(() => {
 		if (token) {
@@ -34,34 +35,66 @@ export default function Navbar() {
 
   const navItems = [
     { name: "Home", href: "/" },
-    // { name: "Learn", href: "/" },
     { name: "New Spread", onClick: handleSaveClick },
     { name: "My Spreads", href: "/spreads" },
   ];
 
-  const getLoggedOutButton = () => {
+  const getLoggedOutButtons = () => {
     return (
-      <Link 
-        href="/login"
-        className="bg-zinc-400 hover:bg-zinc-500 text-slate px-8 py-2 rounded-md"
-      >
-        Login
-      </Link>
+      <div className="flex flex-wrap">
+        <Link 
+          href="/login"
+          className="bg-zinc-400 hover:bg-zinc-500 text-slate px-8 py-2 rounded-md m-2"
+          onClick={() => setIsMobileMenuOpen(false)}
+        >
+          Login
+        </Link>
+        <Link 
+          href="/register"
+          className="bg-zinc-400 hover:bg-zinc-500 text-slate px-8 py-2 rounded-md m-2"
+          onClick={() => setIsMobileMenuOpen(false)}
+        >
+          Sign Up
+        </Link>
+      </div>
     )
   }
 
   const getLoggedInButton = () => {
-    return (  
-      <button 
-        className="bg-zinc-400 hover:bg-zinc-500 text-slate px-8 py-2 rounded-md"
-        onClick={() => {
-							localStorage.removeItem("token")
-							setIsLoggedIn(false)
-						}}
-      >
-        Logout
-      </button>
-    )
+      return ( 
+        <>
+          {navItems.map((item, index) => (  
+            <li
+              key={index}
+              className="flex items-center p-1 text-lg gap-x-2 text-slate-600 hover:text-slate-200"
+            >
+            {item.onClick ? (
+              <button onClick={item.onClick}>
+                {item.name}
+              </button>
+            ) : (
+              <Link onClick={() => {setIsMobileMenuOpen(false);}} href={item.href} className="flex items-center">
+                {item.name}
+              </Link>
+              )}
+            </li>
+          ))} 
+          <li className="mt-4">
+            <button 
+              className="bg-zinc-400 hover:bg-zinc-500 text-slate px-8 py-2 rounded-md"
+              onClick={() => {
+                    localStorage.removeItem("token")
+                    setIsLoggedIn(false)
+                    setIsMobileMenuOpen(false)
+                    setToken("")
+                    router.push("/login")
+                  }}
+            >
+              Logout
+            </button>
+          </li>
+        </>
+      )
   }
 
   return (
@@ -132,51 +165,14 @@ export default function Navbar() {
               </button>
             </div>
             <ul className="flex flex-col h-full gap-4 p-4">
-              {navItems.map((item, index) => (
-                
-                <li
-                  key={index}
-                  className="flex items-center p-1 text-lg gap-x-2 text-slate-600 hover:text-slate-200"
-                >
-                {item.onClick ? (
-                  <button onClick={item.onClick}>
-                    {item.name}
-                  </button>
-                ) : (
-                  <Link onClick={() => {setIsMobileMenuOpen(false);}} href={item.href} className="flex items-center">
-                    {item.name}
-                  </Link>
-                  )}
-                </li>
-              ))}
-              <li className="mt-4">
-                {isLoggedIn ? getLoggedInButton() : getLoggedOutButton()}
-              </li>
+                {isLoggedIn ? getLoggedInButton() : getLoggedOutButtons()}
             </ul>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden lg:block">
             <ul className="flex flex-col gap-2 mt-2 mb-4 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-              {navItems.map((item, index) => (
-                <li
-                  key={index}
-                  className="flex items-center p-1 text-lg gap-x-2 text-slate-600 hover:text-slate-200"
-                >
-                {item.onClick ? (
-                  <button onClick={item.onClick} className="flex items-center">
-                    {item.name}
-                  </button>
-                ) : (
-                  <Link href={item.href} className="flex items-center">
-                    {item.name}
-                  </Link>
-              )}
-                </li>
-              ))}
-              <li>
-                {isLoggedIn ? getLoggedInButton() : getLoggedOutButton()}
-              </li>
+              {isLoggedIn ? getLoggedInButton() : getLoggedOutButtons()}
             </ul>
           </div>
         </div>

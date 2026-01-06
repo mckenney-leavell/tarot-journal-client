@@ -8,17 +8,6 @@ import { useRouter } from "next/navigation";
 export default function Home() {
   const router = useRouter()
 
-  
-    const handleSaveClick = () => {
-        createSpread({
-            title: "",
-            interpretation: ""
-        }).then(spread => {
-          console.log("New spread object:", spread)
-          router.push(`/spreads/new?id=${spread?.id}`)
-        })
-    }
-
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex min-h-screen w-full flex-col items-center py-32 px-16 bg-white dark:bg-black">
@@ -31,13 +20,13 @@ export default function Home() {
               <p className="text-lg leading-8 text-zinc-600 dark:text-zinc-400 m-4">
                 Add your next tarot spread
               </p>          
-              <button
+              <Link
                 className="flex leading-loose w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-auto whitespace-wrap"
-                onClick={handleSaveClick}
+                href="/spreads/new"
                 rel="noopener noreferrer"
               >
                 Add Spread
-              </button>
+              </Link>
             </div>
             <div className="flex flex-col items-center p-6">
               <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400 m-4">

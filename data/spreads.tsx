@@ -1,9 +1,7 @@
 import { fetchWithResponse, fetchWithoutResponse } from "./fetcher"
 
-// checks if you're in a browser since Next.js tries to load from the server before the token is received    
-const token = typeof window !== 'undefined' ? localStorage.getItem('token') : '';
-
 export function getSpreads() {
+    const token = localStorage.getItem('token')
     return fetchWithResponse('spreads', {
         headers: {
             Authorization: `Token ${token}`
@@ -12,6 +10,7 @@ export function getSpreads() {
 }
 
 export function getSpreadById(id) {
+    const token = localStorage.getItem('token')
     return fetchWithResponse(`spreads/${id}`, {
         headers: {
             Authorization: `Token ${token}`
@@ -20,6 +19,7 @@ export function getSpreadById(id) {
 }
 
 export function deleteSpread(id) {
+    const token = localStorage.getItem('token')
     return fetchWithoutResponse(`spreads/${id}`, {
         method: "DELETE",
         headers: {
@@ -29,6 +29,7 @@ export function deleteSpread(id) {
 }
 
 export async function createSpread(spread) {
+    const token = localStorage.getItem('token')
     const response = await fetchWithResponse('spreads', {
         method: 'POST',
         headers: {
@@ -41,6 +42,7 @@ export async function createSpread(spread) {
 }
 
 export function updateSpread(spreadId, spread) {
+    const token = localStorage.getItem('token')
     return fetchWithResponse(`spreads/${spreadId}`, {
         method: "PUT",
         headers: {

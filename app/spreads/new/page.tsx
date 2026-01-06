@@ -27,7 +27,7 @@ export default function NewSpread() {
         createSpread({
             title: titleEl.current.value,
             interpretation: interpretationEl.current.value
-        }).then(spread => saveSpreadCards(spread.id)) 
+        }).then(spread => saveSpreadCards(spread.id)).then(router.push("/spreads"))
     }
 
     const handleCardSelection = (index, cardId) => {

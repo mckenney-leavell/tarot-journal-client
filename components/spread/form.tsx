@@ -38,17 +38,17 @@ export default function SpreadForm({ handleCardSelection, saveSpread, spread, in
     return (
         <form className="max-w-sm mx-auto space-y-4">
             <div>
-                <label htmlFor="visitors" className="block mb-2.5 text-sm font-medium text-heading">Title</label>
-                <input type="text" id="visitors" className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body" placeholder="Add your title" ref={titleEl} required />
+                <label htmlFor="visitors" className="block mb-2.5 text-sm font-medium text-heading text-zinc-300">Title</label>
+                <input type="text" id="visitors" className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body text-zinc-300" placeholder="Add your title" ref={titleEl} required />
             </div>
             {!spread ? 
             <div>
                 {Array.from({ length: count }).map((each, index) => {
                 return <div key={index}>
-                            <label htmlFor="countries" className="block mb-2.5 text-sm font-medium text-heading">Choose a Card</label>
+                            <label htmlFor="countries" className="block mb-2.5 text-sm font-medium text-heading text-zinc-300">Choose a Card</label>
                                 <select 
                                     id="countries" 
-                                    className="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body" 
+                                    className="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-zinc-300 text-zinc-300 text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body" 
                                     onChange={(e) => handleCardSelection(index, e.target.value)}
                                     required
                                 >
@@ -59,23 +59,23 @@ export default function SpreadForm({ handleCardSelection, saveSpread, spread, in
                                 </select>
                         </div>
                 })}
-                <button onClick={addDropdown} className="bg-zinc-400 hover:bg-zinc-500 text-slate px-8 py-2 rounded-md m-4">Add</button>
+                <button onClick={addDropdown} className="flex justify-self-center bg-zinc-500 hover:bg-zinc-600 text-zinc-300 px-8 py-2 rounded-md m-4 text-zinc-300">Add Card</button>
             </div> : 
             spreadCards.map(card => {
                 return (
                     <div key={card.id}>
                         <div >
-                            <label htmlFor="visitors" className="block mb-2.5 text-sm font-medium text-heading"/>
-                            <input type="text" id="visitors" className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body" placeholder="Add your title" defaultValue={card.card?.name} readOnly />
+                            <label htmlFor="visitors" className="block mb-2.5 text-sm font-medium text-heading text-zinc-300"/>
+                            <input type="text" id="visitors" className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body text-zinc-300" placeholder="Add your title" defaultValue={card.card?.name} readOnly />
                         </div>
                     </div>)
             })
             }
             <div> 
-                <label htmlFor="message" className="block mb-2.5 text-sm font-medium text-heading">Interpretation</label>
-                <textarea id="message" rows={4} className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-3.5 shadow-xs placeholder:text-body" placeholder="Write your thoughts here..." ref={interpretationEl} />
+                <label htmlFor="message" className="block mb-2.5 text-sm font-medium text-heading text-zinc-300">Interpretation</label>
+                <textarea id="message" rows={4} className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-3.5 shadow-xs placeholder:text-body text-zinc-300" placeholder="Write your thoughts here..." ref={interpretationEl} />
             </div>
-            <button type="button" onClick={saveSpread} className="flex justify-self-center bg-zinc-400 hover:bg-zinc-500 text-slate px-8 py-2 rounded-md m-4">Save</button>
+            <button type="button" onClick={saveSpread} className="flex justify-self-center bg-zinc-500 hover:bg-zinc-600 text-zinc-300 px-8 py-2 rounded-md m-4">Save</button>
         </form>
     )
 }

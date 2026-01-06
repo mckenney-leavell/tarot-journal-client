@@ -32,8 +32,9 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-gray-950">
+      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center py-32 px-16 bg-white dark:bg-gray-950">
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm dark:bg-gray-950">
         <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">Sign in to your account</h2>
       </div>
 
@@ -80,16 +81,8 @@ export default function Login() {
           <Link href="/register" className="font-semibold text-indigo-400 hover:text-indigo-300"> Register</Link>
         </p>
       </div>
+      </main>
     </div>
 
   )
 }
-
-// Login.getLayout = function getLayout(page) {
-//   return (
-//     <Layout>
-//       {/* <Navbar /> */}
-//       {page}
-//     </Layout>
-//   )
-// }

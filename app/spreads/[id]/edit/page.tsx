@@ -38,9 +38,9 @@ export default function EditSpread({ params }) {
 
     return (
         <>
-            <div className="min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-                <main className="m-auto min-h-screen max-w-3xl flex-col items-center py-32 px-16 bg-white dark:bg-black ">
-                    <h1 className="justify-self-center max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50 p-4">Edit Spread</h1>
+            <div className="min-h-screen items-center justify-center bg-gray-950 font-sans dark:bg-gray-950">
+                <main className="m-auto min-h-screen max-w-3xl flex-col items-center py-32 px-16 bg-white dark:bg-gray-950 ">
+                    <h1 className="justify-self-center max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-300 p-4">Edit Spread</h1>
                     <SpreadForm saveSpread={saveSpread} titleEl={titleEl} interpretationEl={interpretationEl} spread={spread} />
                 </main>
             </div>

@@ -39,7 +39,8 @@ export default function Register() {
   }
 
   return (
-    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div className="flex min-h-full justify-center px-6 py-12 lg:px-8 dark:bg-gray-950">
+      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center m-20 bg-white dark:bg-gray-950">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">Register</h2>
       </div>
@@ -134,6 +135,7 @@ export default function Register() {
         <Link href="/login" className="font-semibold text-indigo-400 hover:text-indigo-300"> Login</Link>
       </p>
     </div>
+    </main>
   </div>
 
   )

@@ -32,27 +32,27 @@ export default function SpreadDetails({ params }: { params: { id: string }}) {
 
     return (
         <>
-            <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-                <main className="flex min-h-screen w-full max-w-3xl flex-col items-center py-32 px-16 bg-white dark:bg-black ">
+            <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-gray-950">
+                <main className="flex min-h-screen w-full max-w-3xl flex-col items-center py-32 px-16 bg-white dark:bg-gray-950 ">
                     <div className="text-center">
-                        <h1 className=" text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50 p-4">{spread.title}</h1>
-                        <p className="italic">{spread.created_date}</p>
+                        <h1 className=" text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-300 p-4">{spread.title}</h1>
+                        <p className="italic text-zinc-300">{spread.created_date}</p>
                         
                             {cards.length > 0 ? <div className="p-4">
-                                        <p className="font-bold">Cards:</p>
+                                        <p className="font-bold text-zinc-300">Cards:</p>
                                         {cards.map(card => {
                                             return (
-                                                <p key={card.id}>{card.card.name}</p>
+                                                <p className="text-zinc-300" key={card.id}>{card.card.name}</p>
                                         )})}
                                     </div> : " "}
                         <div className="p-4">
-                            <p className="font-bold">Interpretation:</p>
-                            <p>{spread.interpretation}</p>
+                            <p className="font-bold text-zinc-300">Interpretation:</p>
+                            <p className="text-zinc-300">{spread.interpretation}</p>
                         </div>
                     </div>
                     <div className="flex justify-center">
-                        <button onClick={() => router.push(`/spreads/${id}/edit`)} className="bg-zinc-400 hover:bg-zinc-500 text-slate px-8 py-2 rounded-md m-4">Edit</button>
-                        <button onClick={() => deleteCurrentSpread(spread.id)} className="bg-zinc-900 border-1 border-zinc-400 hover:border-zinc-500 hover:bg-zinc-500 text-slate px-8 py-2 rounded-md m-4">Delete</button>
+                        <button onClick={() => router.push(`/spreads/${id}/edit`)} className="bg-zinc-500 hover:bg-zinc-600 text-slate px-8 py-2 rounded-md m-4 text-zinc-300">Edit</button>
+                        <button onClick={() => deleteCurrentSpread(spread.id)} className="bg-zinc-900 border-1 border-zinc-400 hover:border-zinc-500 hover:bg-zinc-600 text-slate px-8 py-2 rounded-md m-4 text-zinc-300">Delete</button>
                     </div>
                 </main>
             </div>

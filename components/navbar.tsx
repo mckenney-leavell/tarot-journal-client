@@ -23,16 +23,6 @@ export default function Navbar() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  // const handleSaveClick = () => {
-  //     createSpread({
-  //         title: "",
-  //         interpretation: ""
-  //     }).then(spread => {
-  //       console.log("New spread object:", spread)
-  //       router.push(`/spreads/new?id=${spread?.id}`)
-  //     }).then(() => setIsMobileMenuOpen(false))
-  // }
-
   const navItems = [
     { name: "Home", href: "/" },
     { name: "New Spread", href: "/spreads/new" },
@@ -66,9 +56,9 @@ export default function Navbar() {
           {navItems.map((item, index) => (  
             <li
               key={index}
-              className="flex items-center p-1 text-lg gap-x-2 text-slate-600 hover:text-slate-200"
+              className="flex items-center p-1 text-lg gap-x-2 text-slate-600 hover:text-zinc-300"
             >
-              <Link onClick={() => {setIsMobileMenuOpen(false);}} href={item.href} className="flex items-center">
+              <Link onClick={() => {setIsMobileMenuOpen(false);}} href={item.href} className="flex items-center text-zinc-300">
                 {item.name}
               </Link>
             </li>
@@ -93,8 +83,8 @@ export default function Navbar() {
 
   return (
     <div>
-      <nav className="block w-full max-w-screen px-4 py-4 mx-auto bg-dark bg-opacity-90 sticky top-3 shadow lg:px-8 backdrop-blur-lg backdrop-saturate-150 z-[9999]">
-        <div className="container flex flex-wrap items-center justify-between mx-auto text-slate-800">
+      <nav className="bg-gray-950 fixed w-full z-20 top-0 start-0 border-b border-default">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link
             href="/"
             className="mr-4 block cursor-pointer py-1.5 text-zinc-300 font-bold text-2xl"
@@ -128,7 +118,7 @@ export default function Navbar() {
 
           {/* Mobile Menu */}
           <div
-            className={`fixed top-0 left-0 min-h-screen w-64 bg-slate-900 shadow-lg transform transition-transform duration-300 ease-in-out ${
+            className={`fixed top-0 left-0 min-h-screen w-64 bg-gray-950 shadow-lg transform transition-transform duration-300 ease-in-out ${
               isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
             } lg:hidden z-50`}
           >

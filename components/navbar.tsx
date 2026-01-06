@@ -23,19 +23,19 @@ export default function Navbar() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const handleSaveClick = () => {
-      createSpread({
-          title: "",
-          interpretation: ""
-      }).then(spread => {
-        console.log("New spread object:", spread)
-        router.push(`/spreads/new?id=${spread?.id}`)
-      }).then(() => setIsMobileMenuOpen(false))
-  }
+  // const handleSaveClick = () => {
+  //     createSpread({
+  //         title: "",
+  //         interpretation: ""
+  //     }).then(spread => {
+  //       console.log("New spread object:", spread)
+  //       router.push(`/spreads/new?id=${spread?.id}`)
+  //     }).then(() => setIsMobileMenuOpen(false))
+  // }
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "New Spread", onClick: handleSaveClick },
+    { name: "New Spread", href: "/spreads/new" },
     { name: "My Spreads", href: "/spreads" },
   ];
 
@@ -68,15 +68,9 @@ export default function Navbar() {
               key={index}
               className="flex items-center p-1 text-lg gap-x-2 text-slate-600 hover:text-slate-200"
             >
-            {item.onClick ? (
-              <button onClick={item.onClick}>
-                {item.name}
-              </button>
-            ) : (
               <Link onClick={() => {setIsMobileMenuOpen(false);}} href={item.href} className="flex items-center">
                 {item.name}
               </Link>
-              )}
             </li>
           ))} 
           <li className="mt-4">

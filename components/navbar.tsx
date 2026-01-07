@@ -25,6 +25,7 @@ export default function Navbar() {
 
   const navItems = [
     { name: "Home", href: "/" },
+    { name: "All Cards", href: "/cards" },  
     { name: "New Spread", href: "/spreads/new" },
     { name: "My Spreads", href: "/spreads" },
   ];

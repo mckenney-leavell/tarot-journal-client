@@ -9,8 +9,8 @@ export function Input({
 	children
 }) {
 	return (
-		<div className={`field ${addlClass}`}>
-			{label && <label className="label">{label}</label>}
+		<div>
+			{label && <label>{label}</label>}
 			<div className="control">
 				<input
 					id={id}
@@ -18,7 +18,8 @@ export function Input({
 					className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
 					type={type}
 					ref={refEl}
-					onChange={onChangeEvent}></input>
+					onChange={onChangeEvent}>
+				</input>
 			</div>
 			{children}
 		</div>

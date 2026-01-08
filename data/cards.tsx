@@ -10,3 +10,11 @@ export function getCards() {
         }
     })
 }
+
+export function getCardById(id) {
+    return fetchWithResponse(`cards/${id}`, {
+        headers: {
+            Authorization: `Token ${token}`
+        }
+    })
+}

@@ -5,6 +5,8 @@ import { refresh } from "next/cache"
 import { useParams } from "next/navigation"
 import { use, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
+import Link from "next/link"
 
 export default function SpreadDetails({ params }: { params: { id: string }}) {
     const { id } = use(params)
@@ -38,14 +40,18 @@ export default function SpreadDetails({ params }: { params: { id: string }}) {
                         <div className="text-center space-y-4">
                             <h1 className="text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-300 p-4">{spread.title}</h1>
                             <p className="italic text-zinc-300">{spread.created_date}</p>
-                            
-                                {cards.length > 0 ? <div className="p-4">
-                                            <p className="font-bold text-zinc-300">Cards:</p>
+                                
+                                    {cards.length > 0 ? <div className="flex flex-wrap gap-3 justify-center">
                                             {cards.map(card => {
                                                 return (
-                                                    <p className="text-zinc-300" key={card.id}>{card.card.name}</p>
-                                            )})}
-                                        </div> : " "}
+                                                    <Link key={card.card?.id} href={`/cards/${card.card.id}`} >
+                                                        <Image src={card.card?.url} alt={card.card.name} width={150} height={150} />
+                                                    </Link>
+                                                )
+                                            })}
+                                        </div>
+                                    : " "}
+                               
                             <div className="p-4">
                                 <p className="font-bold text-zinc-300">Interpretation:</p>
                                 <p className="text-zinc-300">{spread.interpretation}</p>

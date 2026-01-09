@@ -10,7 +10,6 @@ export default function Navbar() {
   const { token, setToken } = useAppContext()
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
   const router = useRouter()
-  // const width = window.innerWidth
 
 	useEffect(() => {
 		if (token) {
@@ -95,7 +94,7 @@ export default function Navbar() {
 
           <div className="lg:hidden">
             <button
-              className="relative ml-auto h-6 max-h-[40px] w-6 max-w-[40px] select-none rounded-lg text-center align-middle text-xs font-medium uppercase text-inherit transition-all hover:bg-transparent focus:bg-transparent active:bg-transparent disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+              className="relative ml-auto h-6 max-h-[40px] w-6 max-w-[40px] select-none rounded-lg text-center align-middle text-xs font-medium uppercase text-zinc-500 transition-all hover:bg-transparent focus:bg-transparent active:bg-transparent disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               onClick={toggleMobileMenu}
               type="button"
             >

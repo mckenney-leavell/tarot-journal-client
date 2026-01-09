@@ -41,7 +41,7 @@ export default function Home() {
             </Link>
             <Link
             className="bg-gray-900 border border-gray-700 flex flex-col my-5 justify-center items-center w-full h-full py-20 px-10 rounded-lg shadow-xs hover:bg-gray-800 text-center text-zinc-300"
-            href="/spreads/new"
+            href="/spreads"
             rel="noopener noreferrer"
             >
             <h5 className="mb-3 text-3xl font-semibold tracking-tight text-heading leading-8">See Previous Readings</h5>              

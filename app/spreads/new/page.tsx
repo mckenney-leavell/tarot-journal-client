@@ -48,7 +48,7 @@ export default function NewSpread() {
     return (
         <div className="min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-gray-950">
             <main className="m-auto min-h-screen max-w-3xl flex-col items-center py-32 px-16 bg-white dark:bg-gray-950 ">
-                <h1 className="justify-self-center max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50 p-4">Add a New Spread</h1>
+                <h1 className="justify-self-center text-center max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50 p-4">Add a New Spread</h1>
                 <SpreadForm titleEl={titleEl} interpretationEl={interpretationEl} handleCardSelection={handleCardSelection} saveSpread={saveSpread} />
             </main>
         </div>

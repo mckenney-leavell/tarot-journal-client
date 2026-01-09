@@ -51,18 +51,19 @@ export default function Cards() {
     return (
          <>
             <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-gray-950">
-                <main className="flex min-h-screen w-full max-w-3xl flex-col items-center py-32 px-10 bg-white dark:bg-gray-950">
-                    <h1 className="text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-300 p-4">Tarot Card Meanings</h1>
-                    <div className="flex flex-row gap-2 m-3">
+                <main className="flex h-full min-h-screen w-full flex-col items-center py-30 px-10 bg-white dark:bg-gray-950">
+                    <h1 className="text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-300 text-center p-4">Tarot Card Meanings</h1>
+                    <div className="flex flex-wrap justify-center gap-2 m-3">
                         {filterButtons.map((filterBtn, index) => {
                             return <button key={index} onClick={() => filterCategories(index)} className={activeId === index ? "border-1 border-zinc-500 bg-zinc-500 text-slate px-4 py-1.5 mb-3 rounded-full text-zinc-300" : "bg-zinc-800 border-1 border-gray-700 hover:border-zinc-500 hover:bg-zinc-500 text-slate px-4 py-1.5 mb-3 rounded-full text-zinc-300"}>{filterBtn.name}</button>
                         })}
                     </div>
-                    <div className="grid grid-cols-6 gap-4">
+
+                    <div className="grid grid-cols-2 justify-center lg:grid-cols-6 md:grid-cols-4 gap-4 lg:w-3/4">
                         {filteredCards.map(card => {
                             return (
                                 <Link href={`/cards/${card.id}`} key={card.id}>
-                                    <Image src={card.url} alt={card.name} width={500} height={500} className="transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl" />
+                                    <Image src={card.url} alt={card.name} width={500} height={500} className=" transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl" />
                                 </Link>
                             )
                         })}

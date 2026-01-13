@@ -50,12 +50,12 @@ export default function Cards() {
 
     return (
          <>
-            <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-gray-950">
-                <main className="flex h-full min-h-screen w-full flex-col items-center py-30 px-10 bg-white dark:bg-gray-950">
-                    <h1 className="text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-300 text-center p-4">Tarot Card Meanings</h1>
+            <div className="flex min-h-screen items-center justify-center bg-(--clr-surface-tonal-a10)">
+                <main className="flex h-full min-h-screen w-full flex-col items-center py-30 px-10">
+                    <h1 className="text-3xl font-bold leading-10 tracking-tight text-(--clr-light-a0) text-center p-4">Tarot Card Meanings</h1>
                     <div className="flex flex-wrap justify-center gap-2 m-3">
                         {filterButtons.map((filterBtn, index) => {
-                            return <button key={index} onClick={() => filterCategories(index)} className={activeId === index ? "border-1 border-zinc-500 bg-zinc-500 text-slate px-4 py-1.5 mb-3 rounded-full text-zinc-300" : "bg-zinc-800 border-1 border-gray-700 hover:border-zinc-500 hover:bg-zinc-500 text-slate px-4 py-1.5 mb-3 rounded-full text-zinc-300"}>{filterBtn.name}</button>
+                            return <button key={index} onClick={() => filterCategories(index)} className={activeId === index ? "bg-(--clr-primary-a10) px-5 py-2 mb-3 rounded-full text-(--clr-dark-a0)" : "bg-(--clr-surface-tonal-a0) hover:border-zinc-500 hover:bg-(--clr-surface-tonal-a20) text-(--clr-light-a0) px-5 py-2 mb-3 rounded-full"}>{filterBtn.name}</button>
                         })}
                     </div>
 

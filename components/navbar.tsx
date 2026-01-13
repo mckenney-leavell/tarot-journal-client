@@ -4,11 +4,14 @@ import { createSpread } from "@/data/spreads";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { FaAsterisk } from "react-icons/fa"
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { token, setToken } = useAppContext()
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isActiveId, setIsActiveId] = useState(0)
+  const { token, setToken } = useAppContext()
+
   const router = useRouter()
 
 	useEffect(() => {
@@ -20,13 +23,14 @@ export default function Navbar() {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+
   };
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "Learn", href: "/cards" },  
-    { name: "New Spread", href: "/spreads/new" },
-    { name: "My Spreads", href: "/spreads" },
+    { name: "Learn Tarot", href: "/cards" },  
+    { name: "Add Reading", href: "/spreads/new" },
+    { name: "My Readings", href: "/spreads" },
   ];
 
   const getLoggedOutButtons = () => {
@@ -56,16 +60,16 @@ export default function Navbar() {
           {navItems.map((item, index) => (  
             <li
               key={index}
-              className="flex items-center p-1 text-lg gap-x-2 text-slate-600 hover:text-zinc-300"
+              className="flex items-center p-1 text-lg gap-x-2 text-(--clr-light-a0) hover:text-zinc-300"
             >
-              <Link onClick={() => {setIsMobileMenuOpen(false);}} href={item.href} className="flex items-center text-zinc-300">
+              <Link onClick={() => {setIsMobileMenuOpen(false); setIsActiveId(index)}} href={item.href} className={isActiveId === index ? "flex items-center text-(--clr-primary-a10)" : "flex items-center text-(--clr-light-a0)"}>
                 {item.name}
               </Link>
             </li>
           ))} 
-          <li className="mt-4">
+          <li className="flex items-center p-1 text-lg gap-x-2">
             <button 
-              className="bg-zinc-400 hover:bg-zinc-500 text-slate px-8 py-2 rounded-md"
+              className="flex items-center text-(--clr-surface-tonal-a50)"
               onClick={() => {
                     localStorage.removeItem("token")
                     setIsLoggedIn(false)
@@ -83,12 +87,14 @@ export default function Navbar() {
 
   return (
     <div>
-      <nav className="bg-gray-950 fixed w-full z-20 top-0 start-0 border-b border-default">
+      <nav className="bg-(--clr-surface-tonal-a10) fixed w-full z-20 top-0 start-0 border-b border-(--clr-surface-tonal-a30)">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link
             href="/"
-            className="mr-4 block cursor-pointer py-1.5 text-zinc-300 font-bold text-2xl"
+            className="flex flex-row mr-4 block cursor-pointer py-1.5 text-(--clr-light-a0) font-bold text-2xl"
+            onClick={() => setIsActiveId(0)}
           >
+            <FaAsterisk className="flex-none text-(--clr-primary-a10) group-hover:text-(--clr-surface-tonal-a20) size-7 my-auto mr-4"/>
             TAROT JOURNAL
           </Link>
 
@@ -118,20 +124,20 @@ export default function Navbar() {
 
           {/* Mobile Menu */}
           <div
-            className={`fixed top-0 left-0 min-h-screen w-64 bg-gray-950 shadow-lg transform transition-transform duration-300 ease-in-out ${
+            className={`fixed top-0 left-0 min-h-screen w-64 bg-(--clr-surface-tonal-a0) shadow-lg transform transition-transform duration-300 ease-in-out ${
               isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
             } lg:hidden z-50`}
           >
-            <div className="flex flex-row items-center border-b pb-4">
+            <div className="flex flex-row items-center border-(--clr-surface-a30) pb-4">
               <Link
                 href="/"
                 className="cursor-pointer text-zinc-300 font-bold text-xl pt-4 ps-4"
               >
-                TAROT JOURNAL
+                <FaAsterisk className="flex-none text-(--clr-primary-a10) group-hover:text-(--clr-surface-tonal-a20) size-7 my-auto mr-4"/>
               </Link>
               <button
                 onClick={toggleMobileMenu}
-                className="absolute top-4 right-4 text-slate-600 hover:text-slate-200"
+                className="absolute top-4 right-4 text-(--clr-light-a0) hover:text-slate-200"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

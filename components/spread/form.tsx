@@ -7,7 +7,7 @@ import Link from "next/link"
 import Image from "next/image"
 
 
-export default function SpreadForm({ handleCardSelection, saveSpread, spread, interpretationEl, titleEl }) {
+export default function SpreadForm({ handleCardSelection, saveSpread, spread, interpretationEl, titleEl, toggleFieldMsg }) {
     const [cards, setCards] = useState([])
     const [count, setCount] = useState(1)
     const [spreadCards, setSpreadCards] = useState([])
@@ -42,7 +42,7 @@ export default function SpreadForm({ handleCardSelection, saveSpread, spread, in
                     id="visitors" 
                     refEl={titleEl} 
                     placeholder="Add your title"
-                    label="Title"
+                    label="Title *"
                     required 
                 />
             </div>
@@ -50,7 +50,7 @@ export default function SpreadForm({ handleCardSelection, saveSpread, spread, in
                 <div className="w-full space-y-4">
                     {Array.from({ length: count }).map((each, index) => {
                     return (
-                    <Select id={index} key={index} options={cards} title="Select" label="Choose a card" onChangeFunc={(e) => handleCardSelection(index, e.target.value)} />
+                    <Select id={index} key={index} options={cards} title="Select" label="Choose a card *" onChangeFunc={(e) => handleCardSelection(index, e.target.value)} />
                     )
                     })}
                     <button onClick={addDropdown} className="flex bg-(--clr-surface-tonal-a30) hover:bg-(--clr-surface-tonal-a50) active:bg-(--clr-surface-tonal-a50) border border-(--clr-surface-tonal-a30)  justify-self-center px-6 py-2 rounded-full m-4 active:bg-(--clr-surface-tonal-a30) text-(--clr-light-a0) text-lg fa-solid fa-plus">
@@ -71,6 +71,10 @@ export default function SpreadForm({ handleCardSelection, saveSpread, spread, in
             }
 
             <Textarea id="message" label="Interpretation" refEl={interpretationEl} placeholder="Write your thoughts here..." />
+            
+            <p><i>*  = required field</i></p>
+
+            {toggleFieldMsg === true ? <p className="text-(--clr-danger-a20)"><i>* Please add all required fields</i></p> : ""}
 
             <button type="button" onClick={saveSpread} className="flex justify-self-center px-6 py-2 rounded-full mt-4 bg-(--clr-primary-a10) hover:bg-(--clr-primary-a40) text-(--clr-surface-a0) hover:text-(--clr-surface-tonal-a10) text-lg">Save</button>
         </form>

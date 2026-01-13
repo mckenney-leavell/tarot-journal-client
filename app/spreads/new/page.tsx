@@ -8,6 +8,7 @@ import { useRef, useState } from "react";
 
 export default function NewSpread() {
     const [selectedCards, setSelectedCards] = useState([])
+    const [toggleRequiredFieldMsg, setToggleRequiredFieldMsg] = useState(false)
     const searchParams = useSearchParams()
     const id = searchParams.get('id')
     const titleEl = useRef(null)   
@@ -24,13 +25,21 @@ export default function NewSpread() {
     }
 
     const saveSpread = () => {
-        createSpread({
+        if (titleEl.current.value === "" || titleEl.current.value === " ") {
+            setToggleRequiredFieldMsg(true)
+            return console.log("No title added")
+        } else if (selectedCards.length === 0) {
+            setToggleRequiredFieldMsg(true)
+            return console.log("No cards selected")
+        } else {
+            createSpread({
             title: titleEl.current.value,
             interpretation: interpretationEl.current.value
-        })
-        .then(spread => 
-            saveSpreadCards(spread.id))
-        .then(router.push("/spreads"))
+            })
+            .then(spread => 
+                saveSpreadCards(spread.id))
+            .then(router.push("/spreads"))
+        }
     }
 
     const handleCardSelection = (index, cardId) => {
@@ -49,7 +58,7 @@ export default function NewSpread() {
         <div className="min-h-screen items-center justify-center bg-(--clr-surface-tonal-a10)">
             <main className="m-auto min-h-screen max-w-3xl flex-col items-center py-32 px-16">
                 <h1 className="justify-self-center text-(--clr-light-a0) text-center text-3xl font-bold leading-10 tracking-tight  p-4">Record Your Reading</h1>
-                <SpreadForm titleEl={titleEl} interpretationEl={interpretationEl} handleCardSelection={handleCardSelection} saveSpread={saveSpread} />
+                <SpreadForm titleEl={titleEl} interpretationEl={interpretationEl} handleCardSelection={handleCardSelection} saveSpread={saveSpread} toggleFieldMsg={toggleRequiredFieldMsg} />
             </main>
         </div>
     )

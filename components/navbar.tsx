@@ -30,6 +30,7 @@ export default function Navbar() {
     { name: "Home", href: "/" },
     { name: "Learn Tarot", href: "/cards" },  
     { name: "Add Reading", href: "/spreads/new" },
+    { name: "Single Card Reading", href: "/spreads/random" },
     { name: "My Readings", href: "/spreads" },
   ];
 

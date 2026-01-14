@@ -12,6 +12,7 @@ export default function SpreadDetails({ params }: { params: { id: string }}) {
     const { id } = use(params)
     const [spread, setSpread] = useState({})
     const [cards, getCards] = useState([])
+    const [toggleDeleteConfirm, setToggleDeleteConfirm] = useState(false)
     const router = useRouter()
 
     useEffect(() => {
@@ -59,8 +60,17 @@ export default function SpreadDetails({ params }: { params: { id: string }}) {
                         </div>
                         <div className="flex flex-wrap justify-center my-3">
                             <button onClick={() => router.push(`/spreads/${id}/edit`)} className="bg-(--clr-primary-a10) hover:bg-(--clr-primary-a40) text-(--clr-dark-a0) px-8 py-2 rounded-full mx-4 my-2">Edit</button>
-                            <button onClick={() => deleteCurrentSpread(spread.id)} className="bg-(--clr-surface-tonal-a40) text-(--clr-light-a0) hover:bg-(--clr-surface-tonal-a50) px-8 py-2 rounded-full mx-4 my-2">Delete</button>
+                            <button onClick={() => setToggleDeleteConfirm(true)} className="bg-(--clr-surface-tonal-a40) text-(--clr-light-a0) hover:bg-(--clr-surface-tonal-a50) px-8 py-2 rounded-full mx-4 my-2">Delete</button>
                         </div>
+                        {toggleDeleteConfirm === false ? "" : 
+                            <div className="flex flex-col items-center">
+                                <p className="text-xl text-(--clr-light-a0)">Are you sure you want to delete?</p>
+                                <div>
+                                    <button onClick={() => deleteCurrentSpread(spread.id)} className="bg-(--clr-danger-a10) text-(--clr-light-a0) hover:bg-(--clr-danger-a20) px-8 py-2 rounded-full mx-2 my-2">Confirm Delete</button>
+                                    <button onClick={() => setToggleDeleteConfirm(false)} className="bg-(--clr-surface-tonal-a40) text-(--clr-light-a0) hover:bg-(--clr-surface-tonal-a50) px-8 py-2 rounded-full mx-4 my-2">Cancel</button>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </main>
             </div>

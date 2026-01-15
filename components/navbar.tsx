@@ -2,17 +2,17 @@
 import { useAppContext } from "@/context/AuthProvider";
 import { createSpread } from "@/data/spreads";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { FaAsterisk } from "react-icons/fa"
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [isActiveId, setIsActiveId] = useState(0)
   const { token, setToken } = useAppContext()
 
   const router = useRouter()
+  const pathname = usePathname()
 
 	useEffect(() => {
 		if (token) {
@@ -63,7 +63,7 @@ export default function Navbar() {
               key={index}
               className="flex items-center p-1 text-lg gap-x-2 text-(--clr-light-a0) hover:text-zinc-300"
             >
-              <Link onClick={() => {setIsMobileMenuOpen(false); setIsActiveId(index)}} href={item.href} className={isActiveId === index ? "flex items-center text-(--clr-primary-a10)" : "flex items-center text-(--clr-light-a0)"}>
+              <Link onClick={() => {setIsMobileMenuOpen(false)}} href={item.href} className={pathname === item.href ? "flex items-center text-(--clr-primary-a10)" : "flex items-center text-(--clr-light-a0)"}>
                 {item.name}
               </Link>
             </li>

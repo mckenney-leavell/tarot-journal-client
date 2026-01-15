@@ -13,8 +13,8 @@ export default function Cards() {
         { name: "All" },
         { name: "Major Arcana" },
         { name: "Cups" },
-        { name: "Pentacles" },
         { name: "Swords" },
+        { name: "Pentacles" },
         { name: "Wands" }
     ];
 

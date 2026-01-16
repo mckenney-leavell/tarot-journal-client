@@ -1,10 +1,11 @@
 import { getCards } from "@/data/cards"
-import { useSearchParams } from "next/navigation"
+import { usePathname, useSearchParams } from "next/navigation"
 import { useRouter } from "next/navigation"
 import { useEffect,  useState } from "react"
 import { Input, Select, Textarea } from "../form-elements"
 import Link from "next/link"
 import Image from "next/image"
+import { Chat } from "../chat"
 
 
 export default function SpreadForm({ handleCardSelection, saveSpread, spread, interpretationEl, titleEl, toggleFieldMsg }) {
@@ -14,6 +15,7 @@ export default function SpreadForm({ handleCardSelection, saveSpread, spread, in
     const searchParams = useSearchParams()
     const id = searchParams.get('id')
     const router = useRouter() 
+    const pathname = usePathname()
 
     useEffect(() => {
         getCards().then(data => {
@@ -76,7 +78,10 @@ export default function SpreadForm({ handleCardSelection, saveSpread, spread, in
 
             {toggleFieldMsg === true ? <p className="text-(--clr-danger-a20)"><i>* Please add all required fields</i></p> : ""}
 
-            <button type="button" onClick={saveSpread} className="flex justify-self-center px-6 py-2 rounded-full mt-4 bg-(--clr-primary-a10) hover:bg-(--clr-primary-a40) text-(--clr-surface-a0) hover:text-(--clr-surface-tonal-a10) text-lg">Save</button>
+            {pathname === `/spreads/${spread.id}/edit` ? <Chat spread={spread} cards={spreadCards} title={titleEl} /> : ""}
+
+            <button type="button" onClick={saveSpread} className="flex justify-self-center px-6 py-2 rounded-full mt-4 bg-(--clr-surface-tonal-a30) hover:bg-(--clr-primary-a50) text-(--clr-light-a0) hover:text-(--clr-surface-tonal-a10) text-lg">Save</button>
+
         </form>
     )
 }

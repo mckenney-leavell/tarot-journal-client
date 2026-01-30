@@ -63,7 +63,7 @@ export default function Cards() {
                         {filteredCards.map(card => {
                             return (
                                 <Link href={`/cards/${card.id}`} key={card.id}>
-                                    <Image src={card.url} alt={card.name} width={500} height={500} className=" transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl" />
+                                    <Image src={card.url} alt={card.name} width={500} height={500} priority={true} className=" transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl" />
                                 </Link>
                             )
                         })}

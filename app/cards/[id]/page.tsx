@@ -21,7 +21,7 @@ export default function CardDetails() {
                 <main className="flex h-full min-h-screen w-full flex-col items-center py-30 px-10">
                     <div className="flex flex-col h-1/2 mx-auto justify-center space-y-3">
                         <figure className="h-1/2 self-center">
-                            <Image src={card ? card.url : " "} alt={card ? card.url : "card"} width={300} height={300} />
+                            <Image src={card ? card.url : null} alt={card ? card.name : "card"} width={300} height={300} />
                         </figure>  
                         <div className="space-y-5"> 
                             <h1 className="text-3xl font-bold leading-10 tracking-tight text-(--clr-primary-a20) text-center">{card.name}</h1>

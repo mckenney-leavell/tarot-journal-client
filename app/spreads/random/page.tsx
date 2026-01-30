@@ -53,13 +53,13 @@ export default function SpreadGenerator() {
                         <div className="flex flex-col h-1/2 mx-auto justify-center space-y-3">
                             <h2 className="text-xl leading-10 tracking-tight text-(--clr-light-a0) text-center">Click the card to get your reading for the day</h2>
                             <figure className="h-1/2 self-center cursor-pointer" onClick={getRandomCard}>
-                                <Image src="/images/RWSa-X-RL.png" alt={"tarot-card-back"} width={250} height={250} loading="eager" className="transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl" />
+                                <Image src="/images/RWSa-X-RL.png" alt={"tarot-card-back"} width={250} height={250} loading="eager" className="transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl" priority={true} />
                             </figure>
                         </div> :
                         <div className="flex flex-col h-1/2 mx-auto justify-center space-y-3">
                             <h2 className="text-xl font-semibold leading-10 tracking-tight text-(--clr-primary-a20) text-center">You got {card.name}!</h2>                            
                             <figure className="h-1/2 self-center">
-                                <Image src={card?.url} alt={card?.name} width={250} height={250} />
+                                <Image src={card?.url} alt={card?.name} width={250} height={250} priority={true} />
                             </figure>
                             <h2 className="text-2xl text-(--clr-light-a0) text-center font-semibold">{card.name} Card Meaning</h2>
                             <p className="text-xl text-(--clr-light-a0) text-center">Upright: {card.meaning_upright}</p>

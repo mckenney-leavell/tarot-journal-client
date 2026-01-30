@@ -64,7 +64,7 @@ export default function SpreadForm({ handleCardSelection, saveSpread, spread, in
                         {spreadCards.map(card => {
                             return (
                                 <Link href={`/cards/${card.card.id}`} key={card.card.id}>
-                                    <Image src={card.card.url} alt={card.name} width={150} height={150} className=" transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl" />
+                                    <Image src={card.card.url} alt={card.name} width={150} height={150} className=" transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl" priority={true} />
                                 </Link>
                             )
                         })}
@@ -78,7 +78,7 @@ export default function SpreadForm({ handleCardSelection, saveSpread, spread, in
 
             {toggleFieldMsg === true ? <p className="text-(--clr-danger-a20)"><i>* Please add all required fields</i></p> : ""}
 
-            {pathname === `/spreads/${spread.id}/edit` ? <Chat spread={spread} cards={spreadCards} title={titleEl} /> : ""}
+            {pathname === `/spreads/${spread?.id}/edit` ? <Chat spread={spread} cards={spreadCards} title={titleEl} /> : ""}
 
             <button type="button" onClick={saveSpread} className="flex justify-self-center px-6 py-2 rounded-full mt-4 bg-(--clr-surface-tonal-a30) hover:bg-(--clr-primary-a50) text-(--clr-light-a0) hover:text-(--clr-surface-tonal-a10) text-lg">Save</button>
 

@@ -53,8 +53,14 @@ export default function SpreadDetails({ params }: { params: { id: string }}) {
                                 : " "} 
                             {!spread.interpretation ? "" :       
                                 <div className="p-4">
-                                    <p className="text-xl font-bold">Interpretation:</p>
-                                    <p className="text-xl">{spread.interpretation}</p>
+                                    <p className="text-xl">Interpretation:</p>
+                                    <p className="text-l">{spread.interpretation}</p>
+                                </div>
+                            }
+                            {!spread.ai_interpretation ? "" :       
+                                <div className="p-4">
+                                    <p className="text-(--clr-primary-a30) text-xl">Your Personalized Interpretation:</p>
+                                    <p className="text-l">{spread.ai_interpretation}</p>
                                 </div>
                             }
                         </div>
